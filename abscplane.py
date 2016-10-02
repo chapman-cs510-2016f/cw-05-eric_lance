@@ -24,7 +24,7 @@ expect from each other, it devolves into chaos.
 class AbsComplexPlane(ABC):
     """Abstract base class for complex plane.
     
-    A complex plane is a 2x2 grid of complex numbers, having
+    A complex plane is a 2D grid of complex numbers, having
     the form (x + y*1j), where 1j is the unit imaginary number in
     Python, and one can think of x and y as the coordinates for
     the horizontal axis and the vertical axis of the plane, 
@@ -37,10 +37,10 @@ class AbsComplexPlane(ABC):
     this course, so we wish to have an abstract interface that
     is independent of any particular implementation.
     
-    In addition to generating the 2x2 grid of numbers (x + y*1j),
+    In addition to generating the 2D grid of numbers (x + y*1j),
     we wish to easily support transformations of the plane with
     an arbitrary function f. Done properly, the attribute self.plane
-    should store a 2x2 grid of numbers f(x + y*1j) such that the
+    should store a 2D grid of numbers f(x + y*1j) such that the
     parameter x ranges from self.xmin to self.xmax with self.xlen
     total points, while the parameter y ranges from self.ymin to
     self.ymax with self.ylen total points. By default, the function
@@ -56,19 +56,7 @@ class AbsComplexPlane(ABC):
         ylen (int)   : number of vertical points
         plane        : stored complex plane implementation
         f    (func)  : function displayed in the plane
-    """ 
-    
-    # Class attributes, to be set during an __init__
-    xmin  = NotImplemented
-    xmax  = NotImplemented
-    xlen  = NotImplemented
-    ymin  = NotImplemented
-    ymax  = NotImplemented
-    ylen  = NotImplemented
-    # The implementation type of plane is up to the user
-    plane = NotImplemented
-    # Note that the default f should be the identity: id
-    f     = NotImplemented
+    """
     
     # The @abstractmethod "decorator" forces all subclasses
     # to provide implementations for the following method
