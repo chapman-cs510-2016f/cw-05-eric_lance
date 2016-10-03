@@ -98,7 +98,7 @@ def test_init():
     assert success, message
 
 
-def _f2x(x):
+def f2x(x):
     """function is only used for testing purposes"""
     return( 2*x )
 
@@ -107,7 +107,7 @@ def test_setf1():
     #  create a plane
     tp = ComplexPlane( 1, 10, 1, 10 )
     #  set the function to be f(x) = 2*x
-    tp.set_f( ComplexPlane._f2x )
+    tp.set_f( f2x )
 
     # set up the expected plane
     xmin = 1
@@ -186,7 +186,23 @@ def test_zoom2():
 
 
 def test_refresh1():
-    pass
+    """Test the refresh function.  Create a plane, corrupt the data in the plane, refresh and verify the data is once again correct"""
+    #  create a plane
+    tp = ComplexPlane( 100, 200, -100, 0 )
+    #  create a duplicate plane
+    ep = ComplexPlane( 100, 200, -100, 0 )
 
-def test_refresh2():
-    pass
+    #  corrupt the original test plane
+    tp.plane = [[(-1 +  -1j) for i in range(tp.ylen)] for j in range(tp.xlen)]
+
+    # refresh the plane
+    tp.refresh()
+
+    #  this line is to force an error to prove the test can fail
+    #ep.plane[1][1] = -1
+
+    #  do the expected and actual planes match?
+    success = tp.plane == ep.plane
+    message = 'refresh() did not correctly retore the plane to the expected coordinate values'
+    assert success, message
+
