@@ -24,9 +24,11 @@ Complete the following exercises, saving your solutions in the indicated files. 
 
 ## Assessment
 
-Analyze in this section what you found useful about this assignment in your own words. Include any lingering questions or comments that you may have.
+Analyze in the section what you found useful about this assignment in your own words.  Include any lingering questions or comments that you may have.
 
-**CHANGEME**
+It's always beneficial to get into the habit of doing code-reviews.  Critiques of your own work by others are enlightening and often point out bad habits that have been forming since the last code review or will often introduce you to new trends and best practices being adopted in the wider world of programming.  It also helps you to sharpen your own analytical skills when observing how someone else tackled a problem.  It also helps you to learn to take criticism constructively and not treat it as a personal attack.
+
+Python's take on classes and their implementation is a good comparision to other OOP language implementations.  It is interesting to see how various committees went about implementing their interpretation of the 'right way' of doing things.
 
 ## Honor Pledge
 
