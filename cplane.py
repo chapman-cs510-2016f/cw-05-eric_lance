@@ -14,16 +14,16 @@ class ComplexPlane(cp.AbsComplexPlane):
         """This is the creator.  It must be passed the the min/max X and Y values for the plane, and creates a 2D plane filled with the
         X & Y complex number coordinates of the specified plane.  Note that the initial function f() for computing the values in the plane
         is the identity function, so the values at the coordinate location are the coordinates themselves.  Note also that the number of
-        points in each axis is always forced to be 20."""
+        points in each axis is always forced to be 21."""
         self.xmin  = newXmin
         self.xmax  = newXmax
-        self.xlen  = 20  #make sure this is never able to be 0
+        self.xlen  = 21  #make sure this is never able to be 0
         self.ymin  = newYmin
         self.ymax  = newYmax
-        self.ylen  = 20  #make sure this can never be 0
-        #  must add 1 to get the correct actual step size, otherwise last element does not equal x or y max
-        self.xstep = (self.xmax - self.xmin + 1)/self.xlen
-        self.ystep = (self.ymax - self.ymin + 1)/self.ylen
+        self.ylen  = 21  #make sure this can never be 0
+        #  must sub 1 to get the correct actual step size, otherwise last element does not equal x or y max
+        self.xstep = (self.xmax - self.xmin)/(self.xlen - 1)
+        self.ystep = (self.ymax - self.ymin)/(self.ylen - 1)
         self.f     = lambda x: x
         #  compute the value at each of the coordinate points in the plane
         self.plane = [[self.f(( j*self.xstep + self.xmin ) + ( i*self.ystep + self.ymin )*1j) for i in range(self.ylen)] for j in range(self.xlen)]
@@ -46,8 +46,8 @@ class ComplexPlane(cp.AbsComplexPlane):
         self.ymin  = newYmin
         self.ymax  = newYmax
         #  must add 1 to get the correct actual step size, otherwise last element does not equal x or y max
-        self.xstep = (self.xmax - self.xmin + 1)/self.xlen
-        self.ystep = (self.ymax - self.ymin + 1)/self.ylen
+        self.xstep = (self.xmax - self.xmin)/(self.xlen - 1)
+        self.ystep = (self.ymax - self.ymin)/(self.ylen - 1)
         self.refresh()
 
     def set_f(self, newF):
@@ -105,19 +105,19 @@ def f2x(x):
 def test_setf1():
     """Test that setting the function to a new function updates the plane with the new transformation values"""
     #  create a plane
-    tp = ComplexPlane( 1, 10, 1, 10 )
+    tp = ComplexPlane( 0, 10, 0, 10 )
     #  set the function to be f(x) = 2*x
     tp.set_f( f2x )
 
     # set up the expected plane
-    xmin = 1
+    xmin = 0
     xmax = 10
     xstep = 0.5
-    xlen = 20
-    ymin = 1
+    xlen = 21
+    ymin = 0
     ymax = 10
     ystep = 0.5
-    ylen = 20
+    ylen = 21
     eplane = [[2*(( j*xstep + xmin ) + ( i*ystep + ymin )*1j) for i in range(ylen)] for j in range(xlen)]
 
     #  this line is to force an error to prove the test can fail
@@ -150,14 +150,14 @@ def test_setf2():
 def test_zoom1():
     """Test the zoom function with valid values.  Zoom should move/reset the 2D plane to a known configuration"""
     # set up the expected plane
-    xmin = 1
+    xmin = 0
     xmax = 10
     xstep = 0.5
-    xlen = 20
-    ymin = 1
+    xlen = 21
+    ymin = 0
     ymax = 10
     ystep = 0.5
-    ylen = 20
+    ylen = 21
     eplane = [[(( j*xstep + xmin ) + ( i*ystep + ymin )*1j) for i in range(ylen)] for j in range(xlen)]
 
     #  create a plane
