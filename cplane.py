@@ -2,6 +2,12 @@
 
 import abscplane as cp
 
+#
+### INSTRUCTOR COMMENT:
+# The below docstring is misplaced. It looks like documentation for the class, not the module.
+# Here should be the docstring for the module. The class docstring should appear right after
+# the first line of the class definition below.
+#
 """This is the Class ComplexPlane.  It is built from the Abstract Class AbsComplexPlane.
 This Class serves as a simplistic pan/zoom over a 2D complex plane, where each point in the
 plane undergoes a transformation through the function f(), where the value at the coordinate
@@ -10,6 +16,11 @@ point is:
 """
 
 class ComplexPlane(cp.AbsComplexPlane):
+    #
+    ### INSTRUCTOR COMMENT:
+    # Tip: if your class has many parameters like this, it is convenient to set default values
+    # for the __init__ function. This way, you can create sensible instantiations easily.
+    #
     def __init__(self,newXmin,newXmax,newYmin,newYmax):
         """This is the creator.  It must be passed the the min/max X and Y values for the plane, and creates a 2D plane filled with the
         X & Y complex number coordinates of the specified plane.  Note that the initial function f() for computing the values in the plane
